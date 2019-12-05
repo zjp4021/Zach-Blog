@@ -1,0 +1,173 @@
+﻿@model Zach_Blog.Models.BlogPost
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<section class="s-content s-content--top-padding s-content--narrow">
+
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <h1 class="display-1 display-1--with-line-sep">Edit Post</h1>
+
+        </div>
+    </div>
+</section>
+
+<!-- Page Header  ================================
+================================================== -->
+
+
+
+@*!<-- Post Content--></-->
+===================================================================
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                @Html.Raw(Model.BlogPostBody)
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<hr style="border:2px solid black;" />*@
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+<section>
+    <div class="row" align="center">
+        <div class="col-full s-content__main">
+
+
+
+            @using (Html.BeginForm("Edit", "BlogPosts", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Created)
+                @Html.HiddenFor(model => model.Slug)
+                @Html.HiddenFor(model => model.ImagePath)
+
+
+
+                <hr />
+
+                <div class="container" align="center">
+                    <section>
+                        <div class="row">
+                            <div class="col-lg-offset-0 col-lg-5">
+                                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10 mg-b-20">
+                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Abstract, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-lg-10 mg-b-20">
+                                        @Html.EditorFor(model => model.Abstract, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Abstract, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <br />
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-offset-0 col-lg-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.BlogPostBody, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.BlogPostBody, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.BlogPostBody, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-offset-0 col-lg-4" align="right">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.Editor("Picture", new { htmlAttributes = new { @class = "form-control", type = "file" } })
+                                        @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br />
+
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.Published)
+                                        @Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-lg-offset-0 col-lg-4">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save Edit" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+
+
+            }
+
+        </div>
+    </div>
+</section>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+

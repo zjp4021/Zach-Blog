@@ -1,17 +1,152 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model Zach_Blog.Models.EmailModel
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<!-- Custom CSS for Background Image======================-->
+<link href="~/Content/Custom.css" rel="stylesheet" />
+<!--=======================================================-->
+@*<div class="Custom-background">*@
+
+
+
+
+
+<!--=====================================================================================================-->
+<section class="s-content s-content--top-padding s-content--narrow">
+
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <h1 class="display-1 display-1--with-line-sep">Contact Me</h1>
+
+        </div>
+    </div>
+</section>
+
+    
+            <section>
+                <div class="container">
+                    <div class="row" align="center">
+                        <img src="~/Images/mailbox.jpg" style="height:500px; width:500px;" />
+                    </div>
+                </div>
+            </section>
+    
+
+
+        <section>
+            <div class="row">
+                <div class="col-full s-content__main">
+                    <div class="row">
+                        <div class="col-seven tab-full align-center">
+                            <h4>Where to Find Me</h4>
+
+                            <p>
+                                1350 Claxton Ridge Dr.<br />
+                                Kernersville, NC <br />
+                                27284 US
+                            </p>
+
+                        </div>
+
+                        <div class="col-five tab-full align-right">
+                            <h4>Contact Info</h4>
+
+                            <p>
+                                ZJP4021@gmail.com <br>
+                                Phone: (336) 414 0999 <br>
+
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <h3 align="center">Get In Touch</h3>
+
+
+                    @using (Html.BeginForm())
+                    {
+
+                        @Html.AntiForgeryToken()
+
+
+                        <hr />
+
+
+                        <div class="container align-center">
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                        <div class="form-field">
+                                            @Html.LabelFor(m => m.FromName, new { @class = "col-lg-three control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.FromName, new { @class = "full-width", placeholder = "Your Name" })
+                                                @Html.ValidationMessageFor(m => m.FromName)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-field">
+                                            @Html.LabelFor(m => m.FromEmail, new { @class = "col-lg-three control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.FromEmail, new { @class = "full-width", placeholder = "Your Email" })
+                                                @Html.ValidationMessageFor(m => m.FromEmail)
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-field">
+                                            @Html.LabelFor(m => m.Subject, new { @class = "col-lg-three control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.Subject, new { @class = "full-width", placeholder = "Subject" })
+                                                @Html.ValidationMessageFor(m => m.Subject)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-field">
+                                            @Html.LabelFor(m => m.Body, new { @class = "col-lg-three control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextAreaFor(m => m.Body, new { @class = "full-width", placeholder = "Compose Message", rows = 5, cols = 100 })
+                                                @Html.ValidationMessageFor(m => m.Body)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div>
+                                    <input type="submit" class="submit btn btn--primary btn--large full-width" value="Send Message" />
+
+                                </div>
+
+                                <br />
+
+                            </section>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </section>
+
+            <br />
+
+
+
+
+
+
+
+

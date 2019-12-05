@@ -1,44 +1,297 @@
 ﻿<!DOCTYPE html>
-<html>
+<html class="no-js" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Zach's Blog Of A LifeTime</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/Images/favicon-16x16.png">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link href="~/Content/base.css" rel="stylesheet" />
+    <link href="~/Content/vendor.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+
+    <!-- Font Awesome
+    ===================================================-->
+    <link href="~/Content/font-awesome/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/fontawesome-all.css" rel="stylesheet" />
+
+    <!-- WebFonts
+    ================================================== -->
+    <a href="~/Content/webfonts/fa-solid-900.ttf">~/Content/webfonts/fa-solid-900.ttf</a>
+    <a href="~/Content/webfonts/fa-solid-900.woff">~/Content/webfonts/fa-solid-900.woff</a>
+    <a href="~/Content/webfonts/fa-solid-900.woff2">~/Content/webfonts/fa-solid-900.woff2</a>
+
+    <!-- script
+    ================================================== -->
+    <script src="~/Scripts/modernizr.js"></script>
+
+    <!-- fave Icons
+    ================================================== -->
+    <link rel="shortcut icon" href="/Images/favicon-16x16.png">
+    <link rel="icon" href="/Images/favicon-16x16.png">
+
+
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+<body id="top">
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+    <div id="loader" class="dots-fade">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- header
+    ================================================== -->
+    <header class="s-header header">
+
+        <div class="header__logo">
+            <div class="logo" href="index.html" style="font-style:oblique">
+                <strong>Zach's Blog</strong>
+            </div>
+
+        </div>
+        <!-- end header__logo -->
+      
+        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
+            {
+                <a class="header__search-trigger" href=""></a>
+                <div class="header__search">
+                    <div class="row" align="center">
+                        <div class="controls controls-row search-row">
+                            <input id="searchStr" name="searchStr" class="input-block-level" type="text" placeholder="Search">
+                            <button id="searchStr" name="searchStr" class="btn btn--primary btn--medium" type="submit" value="Search">
+                                <img src="~/Images/icon-search.svg" />
+                            </button>
+                            <button class="btn btn--primary btn--medium" type="submit" value="Cancel">
+                            
+                                <i>  <img src="~/Images/icon-search.svg" /></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+
+
+
+
+
+        @*@using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get, htmlAttributes: new { @class = "form" }))
+        {
+            <a class="header__search-trigger" href="#0"></a>
+            <div class="header__search">
+
+                <form role="search" method="get" class="header__search-form" action="#">
+                    <label>
+                        <span class="hide-content">Search for:</span>
+                        <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
+                    </label>
+                    <input type="submit" class="search-submit" value="Search">
+                </form>
+
+                <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+            </div>
+        }*@
+
+
+        @*<a class="header__search-trigger" href="#0"></a>
+        <div class="header__search">
+
+            <form role="search" method="get" class="header__search-form" action="#">
+                <label>
+                    <span class="hide-content">Search for:</span>
+                    <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
+                </label>
+                <input type="submit" class="search-submit" value="Search">
+            </form>
+
+            <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
+
+        </div>*@  <!-- end header__search -->
+
+        <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+        @*<nav class="header__nav-wrap">
+
+        <h2 class="header__nav-heading h6">Navigate to</h2>*@
+
+
+        <!--Beginning Header Navigation Bar-->
+        <nav class="header__nav-wrap">
+            <ul class="header__nav">
+
+                @*<li class="nav-item">
+                    @Html.ActionLink("Home", "Index", "Home")
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("About", "About", "Home")
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Contact", "Contact", "Home")
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("LogIn", "Login", "Account", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                </li>*@
+
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", "Home")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Home")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Blogs", "Index", "BlogPosts")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("LogOff", "CustomLogOff", "Account", null, new { @class = "nav-link" })
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About", "About", "Home")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Home")
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("LogIn", "Login", "Account", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                    </li>
+                }
+
+            </ul>
+
+        </nav>
+
+
+
+        <!-- end header__nav -->
+
+</header> <!-- s-header -->
+    <!-- featured
+    ================================================== -->
+    <!-- end s-featured -->
+    <!-- s-content
+    ================================================== -->
+    <section class="s-content">
+        @RenderBody()
+    </section>
+
+
+
+
+    <!-- end s-content -->
+    <!-- s-extra
+    ================================================== -->
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+
+        <div class="s-footer__main">
+            <div class="row">
+
+                <div class="col-five tab-full s-footer__about">
+
+                    <h4>Hope you enjoy my blog!</h4>
+
+                </div> <!-- end s-footer__about -->
+
+                <div class="col-seven tab-full s-footer__subscribe">
+                    <span>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> Zach's Blog | All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </span>
+                </div>
+
+            </div>
+        </div> 
+
+        <!-- end s-footer__bottom -->
+
+        <div class="go-top">
+            <a class="smoothscroll" title="Back to Top" href="#top"></a>
+        </div>
+
+    </footer> 
+    
+    <!-- end s-footer ========================================================================================================================================================-->
+
+
+
+
+
+
+
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/modernizr.js"></script>
+
+    <!--Custom Scripts-->
+
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+
+    <script>
+        $(function () {
+            tinymce.init({
+                selector: '#BlogPostBody'
+            });
+        });
+    </script>
+
+    @*<script>
+            $(function () {
+                tinymce.init({
+                    selector: '#Body'
+                });
+            });
+        </script>*@
+
+
+
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

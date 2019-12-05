@@ -1,0 +1,267 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<Zach_Blog.Models.BlogPost>
+
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<section data-animate="bounceIn" class="s-content s-content--top-padding s-content--narrow">
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <h1 class="display-1 display-1--with-line-sep">Blog Index</h1>
+
+        </div>
+    </div>
+</section>
+
+<!-- s-content
+================================================== -->
+<!--============================================================================================================================-->
+<section class="s-content">
+
+    <div class="row entries-wrap wide">
+        <div class="entries">
+            @foreach (var blogPost in Model)
+            {
+                <article class="col-block">
+
+                    <div class="item-entry" data-aos="zoom-in">
+                        <div class="item-entry__thumb">
+                            @if (blogPost.ImagePath != null)
+                            {
+                                <img src="@Url.Content(blogPost.ImagePath)" style="height:360px;width:320px;" />
+                            }
+
+                        </div>
+
+                        <div class="item-entry__text">
+                            <div class="item-entry__cat">
+                                @Html.ActionLink("By: Zach Pruitt", "Details", "Blog", new { id = blogPost.Slug }, null)
+                            </div>
+
+                            <h1 class="item-entry__title">@blogPost.Title</h1>
+
+                            <div class="item-entry__date">
+                                <a href="single-standard.html"></a>
+                                @blogPost.Created.ToString("MMM dd, yyyy")
+
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+            }
+
+        </div>
+    </div>
+</section>
+
+<!--Beginning of Entry/Article Section-->
+
+<div class="container">
+    <div class="row">
+        <div class="entry__header col-full">
+            <h2>Index</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-full">
+                @if (User.IsInRole("Admin"))
+                {
+                    <p>
+                        @Html.ActionLink("Create New Blog", "Create")
+                    </p>
+                }
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Created")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Updated")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Title")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Slug")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Abstract")
+                        </th>
+                        @*<th>
+                                @Html.DisplayName("BlogPostBody")
+                            </th>*@
+                        <th>
+                            @Html.DisplayName("ImagePath")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Published")
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Updated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Slug)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Abstract)
+                            </td>
+                            @*<td>
+                                    @Html.Raw(item.BlogPostBody)
+                                </td>*@
+                            <td>
+                                @if (item.ImagePath != null)
+                                {
+                                    <img class="img-responsive" src="@Url.Content(item.ImagePath)" alt="" style="height:140px;width:140px;" />
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Published)
+                            </td>
+                            <td>
+                                <p>@Html.ActionLink("View", "Details", new { slug = item.Slug })</p>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <p> @Html.ActionLink("| Edit |", "Edit", new { id = item.Id })</p>
+
+                                    <p>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</p>
+                                }
+
+                            </td>
+                            <td></td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end entry/article -->
+
+
+<section>
+    <div class="row pagination-wrap">
+        <div class="col-full">
+            <nav class="pgn" data-aos="fade-up">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr = ViewBag.Search }))
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- Practice Math Modal from Instructor Jason -->
+<!-- Button to Open the Modal -->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+    Example Math
+</button>-->
+<!-- The Modal -->
+<div class="modal" id="myModal4">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Example Math Exercise</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col text-center h3">
+                            My first JS exercise.
+                        </div>
+                    </div>
+
+                    <hr style="border:2px solid black" />
+
+                    <div class="row">
+                        <div class="col-md-3" id="paddedCol">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" id="input1" placeholder="Enter number 1" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" id="input2" placeholder="Enter number 2" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" id="input3" placeholder="Enter number 3" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" id="input4" placeholder="Enter number 4" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" id="input5" placeholder="Enter number 5" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <button class="btn-dark btn-md" id="btnMain">Calculate</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <label id="results"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

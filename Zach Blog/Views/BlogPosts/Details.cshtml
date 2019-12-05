@@ -1,0 +1,239 @@
+﻿@model Zach_Blog.Models.BlogPost
+
+@using Zach_Blog.Helpers
+@using Microsoft.AspNet.Identity
+
+@*@model IPagedList<BlogPost>
+@using PagedList;
+@using PagedList.Mvc;*@
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<!-- Page Header  ================================
+================================================== -->
+<article class="s-content s-content--top-padding s-content--narrow">
+
+    <article class="row entry format-standard">
+
+        <div class="entry__media col-full" align="center">
+            <div class="entry__post-thumb">
+                <img src=@Model.ImagePath style="height:700px;width:800px;" alt="">
+            </div>
+        </div>
+
+        <div class="entry__header col-full">
+            <h1 class="entry__header-title display-1">@Model.Title</h1>
+            <ul class="entry__header-meta">
+                <li class="byline">
+                    Posted By
+                    @Html.ActionLink("Zach Pruitt", "Contact", "Home")
+
+                    @*<a href="#0">Zach Pruitt</a>*@
+                </li>
+                <li class="date">on @Model.Created.ToString("MMM dd, yyyy")</li>
+            </ul>
+        </div>
+    </article>
+</article>
+
+
+<!-- Post Content
+===================================================================-->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                @Html.Raw(Model.BlogPostBody)
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<hr style="border:2px thin black;" />
+
+
+
+
+
+
+
+
+
+
+<div class="comments-wrap">
+
+    <div class="row comment-respond">
+
+        <!-- START respond -->
+        <div id="respond" class="col-full">
+
+            <h3 class="h2">Add Comment <span>Your email address will not be published</span></h3>
+
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div id="addComment">
+                    @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("BlogPostId",Model.Id)
+
+                        <div class="row">
+                            <div class="offset-3 col-md-6">
+                                @Html.TextArea("CommentBody", new { rows = 5, cols = 100, placeholder = "Add Comment" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            @*<div class="offset-3 col-md-6">*@
+                            <button type="submit" class="btn btn--primary btn-wide btn--large full-width">Add Comment</button>
+                            @*</div>*@
+                        </div>
+                    }
+                </div>
+            }
+
+
+        </div>
+        <!-- END respond-->
+
+    </div> <!-- end comment-respond -->
+
+    <br />
+    <hr style="border:2px thin black;" />
+
+
+    <div id="comments" class="row">
+        <div class="col-full">
+
+            <h3 class="h2">Comments</h3>
+
+            <!-- START commentlist -->
+            <ol class="commentlist">
+
+                @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
+                {
+                    <li class="depth-1 comment">
+
+                        <div class="comment__avatar">
+                            <img class="avatar" src="~/images/user-03.jpg" alt="" width="50" height="50">
+                        </div>
+
+                        <div class="comment__content">
+
+                            <div class="comment__info">
+                                <div class="comment__author">@comment.Author.FullName</div>
+
+                                <div class="comment__meta">
+                                    <div class="comment__time">@comment.Created.ToString("MMM dd, yyyy h:mm tt")</div>
+                                    <div class="comment__reply">
+                                        @*<a class="comment-reply-link" href="#0">Reply</a>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comment__text">
+                                <p>
+                                    @comment.CommentBody
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </li>
+
+                    <br />
+                }
+                <!-- end comment level 1 -->
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row" align="center">
+    <h4>
+        @Html.ActionLink("| Back to Blog Posts |", "Index")
+    </h4>
+</div>
+
+
+
+@*<div>
+        <h4>BlogPost</h4>
+        <hr />
+        <dl class="display-1--with-line-sep">
+            <dt>
+                @Html.DisplayNameFor(model => model.Created)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Created)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Updated)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Updated)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Slug)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Slug)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Abstract)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Abstract)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BlogPostBody)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BlogPostBody)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImagePath)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Published)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Published)
+            </dd>
+
+        </dl>
+    </div>*@
+

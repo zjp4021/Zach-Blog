@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -14,13 +16,21 @@ namespace Zach_Blog.Models
         public string LastName { get; set; }
         public string DisplayName { get; set; }
 
-        //Navigation section
-        public virtual ICollection<Comment> Comments { get; set; }
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
 
+        //Navigation section
         public ApplicationUser() 
         {
-            Comments = new HashSet<Comment>();
+            this.Comments = new HashSet<Comment>();
         }
+        public virtual ICollection<Comment> Comments { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -42,7 +52,7 @@ namespace Zach_Blog.Models
             return new ApplicationDbContext();
         }
 
-        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<BlogPost> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
     }

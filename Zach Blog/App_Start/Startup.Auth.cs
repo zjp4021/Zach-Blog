@@ -58,11 +58,11 @@ namespace Zach_Blog
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "111626671387-2o7krhrqb561uu9pv7m27hdkkae7ea8k.apps.googleusercontent.com",
+                ClientSecret = "k_AUgR6L_VB88o5uyF00vgua"
+            });
         }
     }
 }

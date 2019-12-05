@@ -1,31 +1,151 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@using Zach_Blog.Models
+@using PagedList;
+@using PagedList.Mvc;
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@model IPagedList<BlogPost>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+<!--Page Header-->
+<!-- s-header -->
+
+
+
+<section data-animate="bounceIn" class="s-content s-content--top-padding s-content--narrow">
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <h1 class="display-1 display-1--with-line-sep">My Latest Posts!</h1>
+
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+
+
+<section class="s-featured">
+    <div class="row">
+        <div class="col-full">
+
+            <div class="featured-slider featured" data-aos="zoom-in">
+
+                @foreach (var blogpost in Model)
+                {
+                    
+                    <div class="featured__slide">
+                        <div class="entry">
+                            
+                            <div class="entry__background" style="background-image:url(@blogpost.ImagePath);"></div>
+                              
+                            <div class="entry__content">
+                                @*<span class="entry__category"><a href="#0">Music</a></span>*@
+
+                                <h1><a title="">@blogpost.Title</a></h1>
+
+                                <div class="entry__info">
+                                    <ul class="entry__meta">
+                                        <li>@Html.ActionLink("By: Zach Pruitt", "Details", "Blog", new { id = blogpost.Slug}, new { })</li>
+                                        <li>@blogpost.Created.ToString("MMM dd, yyyy")</li>
+                                    </ul>
+                                </div>
+                            </div> <!-- end entry__content -->
+
+                        </div> <!-- end entry -->     
+                    </div>
+                }
+                <div class="featured__slide">
+                    <div class="entry">
+
+                        <div class="entry__background" style="background-image:url('/Images/featured-guitarman.jpg');"></div>
+
+                        <div class="entry__content">
+                            <span class="entry__category"><a href="#0">Music</a></span>
+
+                            <h1><a href="#0" title="">What Your Music Preference Says About You and Your Personality.</a></h1>
+
+                            <div class="entry__info">
+                                @*<a href="#0" class="entry__profile-pic">
+                                    <img src="~/Images/user-05.jpg" />
+                                </a>*@
+                                <ul class="entry__meta">
+                                    <li><a href="#0">Jonathan Smith</a></li>
+                                    <li>June 02, 2018</li>
+                                </ul>
+                            </div>
+                        </div> <!-- end entry__content -->
+
+                    </div> <!-- end entry -->
+                </div> <!-- end featured__slide -->
+
+                <div class="featured__slide">
+
+                    <div class="entry">
+
+                        <div class="entry__background" style="background-image:url('/Images/featured-watch.jpg');"></div>
+
+                        <div class="entry__content">
+                            <span class="entry__category"><a href="#0">Management</a></span>
+
+                            <h1><a href="#0" title="">The Pomodoro Technique Really Works.</a></h1>
+
+                            <div class="entry__info">
+                                <a href="#0" class="entry__profile-pic">
+                                    <img src="~/Images/user-03.jpg" />
+                                </a>
+
+                                <ul class="entry__meta">
+                                    <li><a href="#0">John Doe</a></li>
+                                    <li>June 13, 2018</li>
+                                </ul>
+                            </div>
+                        </div> <!-- end entry__content -->
+
+                    </div> <!-- end entry -->
+
+                </div> <!-- end featured__slide -->
+
+                <div class="featured__slide">
+
+                    <div class="entry">
+
+                        <div class="entry__background" style="background-image:url('/Images/featured-beetle.jpg');"></div>
+
+                        <div class="entry__content">
+                            <span class="entry__category"><a href="#0">LifeStyle</a></span>
+
+                            <h1><a href="#0" title="">The difference between Classics, Vintage & Antique Cars.</a></h1>
+
+                            <div class="entry__info">
+                                <a href="#0" class="entry__profile-pic">
+                                    <img src="~/Images/user-03.jpg" />
+                                </a>
+
+                                <ul class="entry__meta">
+                                    <li><a href="#0">John Doe</a></li>
+                                    <li>June 12, 2018</li>
+                                </ul>
+                            </div>
+                        </div> <!-- end entry__content -->
+
+                    </div> <!-- end entry -->
+
+                </div> <!-- end featured__slide -->
+
+            </div> <!-- end featured -->
+
+        </div> <!-- end col-full -->
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+
+
+<!-- s-content
+================================================== -->
+
+
+<section>
+    <div class="row pagination-wrap">
+        <div class="col-full">
+            <nav class="pgn" data-aos="fade-up">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </nav>
+        </div>
     </div>
-</div>
+</section> <!-- end s-content -->

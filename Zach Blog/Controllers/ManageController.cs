@@ -10,6 +10,7 @@ using Zach_Blog.Models;
 
 namespace Zach_Blog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {
