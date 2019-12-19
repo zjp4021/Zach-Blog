@@ -264,6 +264,12 @@
     <Content Include="Images\wheel-400.jpg" />
     <Content Include="Images\woodcraft-400.jpg" />
     <Content Include="Images\Zoso&amp;Me.jpg" />
+    <Content Include="obj\Debug\Zach Blog.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Zach Blog.dll" />
+    <Content Include="obj\Debug\Zach Blog.pdb" />
+    <Content Include="obj\Release\Zach Blog.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\Zach Blog.dll" />
+    <Content Include="obj\Release\Zach Blog.pdb" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -395,6 +401,17 @@
     <Content Include="Scripts\tinymce\themes\silver\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Uploads\applevalley_637110756277342630.jpg" />
+    <Content Include="Uploads\bug_637110771046144831.jfif" />
+    <Content Include="Uploads\cosmo2_637110739707117964.jpg" />
+    <Content Include="Uploads\cosmo2_637110763055136619.jpg" />
+    <Content Include="Uploads\island-sunset637068198431079547.jpg" />
+    <Content Include="Uploads\island-sunset_637110765226213250.jpg" />
+    <Content Include="Uploads\island-sunset_637110778741352721.jpg" />
+    <Content Include="Uploads\logo_637111364615902609.jfif" />
+    <Content Include="Uploads\oldebeau_637111352878371591.jpg" />
+    <Content Include="Uploads\pupsonbeach_637102073295657767.jpg" />
+    <Content Include="Uploads\sunset_637110746458362842.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -442,7 +459,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\Package\" />
+    <Folder Include="obj\Release\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fa-brands-400.eot" />
@@ -460,6 +479,12 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Zach Blog.csproj.CopyComplete" />
+    <Content Include="obj\Debug\Zach Blog.csprojAssemblyReference.cache" />
+    <Content Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Release\Zach Blog.csproj.CopyComplete" />
+    <Content Include="obj\Release\Zach Blog.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
     <Content Include="Scripts\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
@@ -467,6 +492,8 @@
     <Content Include="Private.config" />
     <None Include="Properties\PublishProfiles\ZachBlog1 - Web Deploy.pubxml" />
     <Content Include="Views\Shared\_DetailComments.cshtml" />
+    <Content Include="Uploads\island-sunset637068195285860869" />
+    <Content Include="Uploads\island-sunset637068195549770982" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

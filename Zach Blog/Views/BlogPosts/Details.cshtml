@@ -4,8 +4,8 @@
 @using Microsoft.AspNet.Identity
 
 @*@model IPagedList<BlogPost>
-@using PagedList;
-@using PagedList.Mvc;*@
+    @using PagedList;
+    @using PagedList.Mvc;*@
 
 @{
     ViewBag.Title = "Details";
@@ -53,19 +53,7 @@
     </div>
 </article>
 
-
-
-
 <hr style="border:2px thin black;" />
-
-
-
-
-
-
-
-
-
 
 <div class="comments-wrap">
 
@@ -83,7 +71,7 @@
                     @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.Hidden("BlogPostId",Model.Id)
+                        @Html.Hidden("BlogPostId", Model.Id)
 
                         <div class="row">
                             <div class="offset-3 col-md-6">
@@ -134,6 +122,12 @@
                                     <div class="comment__time">@comment.Created.ToString("MMM dd, yyyy h:mm tt")</div>
                                     <div class="comment__reply">
                                         @*<a class="comment-reply-link" href="#0">Reply</a>*@
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            @Html.ActionLink("| Edit |", "Edit","Comments", new { id = comment.Id }, null)
+
+                                            @Html.ActionLink("Delete", "Delete","Comments", new { id = comment.Id }, null)
+                                        }
                                     </div>
                                 </div>
                             </div>

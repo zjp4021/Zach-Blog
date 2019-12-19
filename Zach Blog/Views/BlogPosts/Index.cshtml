@@ -36,23 +36,32 @@
                         <div class="item-entry__thumb">
                             @if (blogPost.ImagePath != null)
                             {
-                                <img src="@Url.Content(blogPost.ImagePath)" style="height:360px;width:320px;" />
+                                <a href="@Url.Action("Details", "Blog", new { id = blogPost.Slug})"><img src="@Url.Content(blogPost.ImagePath)" style="height:360px;width:320px;" /></a>
                             }
 
                         </div>
 
                         <div class="item-entry__text">
                             <div class="item-entry__cat">
-                                @Html.ActionLink("By: Zach Pruitt", "Details", "Blog", new { id = blogPost.Slug }, null)
+                                By: Zach Pruitt
                             </div>
-
-                            <h1 class="item-entry__title">@blogPost.Title</h1>
+                            <a href="@Url.Action("Details", "Blog", new { id = blogPost.Slug})">
+                                <h1 class="item-entry__title">@blogPost.Title</h1>
+                            </a>
 
                             <div class="item-entry__date">
                                 <a href="single-standard.html"></a>
                                 @blogPost.Created.ToString("MMM dd, yyyy")
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <p> @Html.ActionLink("| Edit |", "Edit", new { id = blogPost.Id })</p>
+
+                                    <p>@Html.ActionLink("Delete", "Delete", new { id = blogPost.Id })</p>
+                                }
 
                             </div>
+                        </div>
+                        <div>
                         </div>
                     </div>
 
@@ -65,7 +74,7 @@
 
 <!--Beginning of Entry/Article Section-->
 
-<div class="container">
+@*<div class="container">
     <div class="row">
         <div class="entry__header col-full">
             <h2>Index</h2>
@@ -96,9 +105,9 @@
                         <th>
                             @Html.DisplayName("Abstract")
                         </th>
-                        @*<th>
+                        <th>
                                 @Html.DisplayName("BlogPostBody")
-                            </th>*@
+                            </th>
                         <th>
                             @Html.DisplayName("ImagePath")
                         </th>
@@ -128,9 +137,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Abstract)
                             </td>
-                            @*<td>
+                            <td>
                                     @Html.Raw(item.BlogPostBody)
-                                </td>*@
+                                </td>
                             <td>
                                 @if (item.ImagePath != null)
                                 {
@@ -159,7 +168,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 <!-- end entry/article -->
